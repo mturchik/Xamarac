@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
+using Xamarac.Services;
 using Xamarin.Forms;
 
 namespace Xamarac
@@ -6,12 +8,11 @@ namespace Xamarac
     [DesignTimeVisible(false)]
     public partial class MorsePage : ContentPage
     {
-        public MorsePage()
-        {
-            InitializeComponent();
-        }
+        public MorsePage() => InitializeComponent();
 
-        public void Button_Clicked(object sender, System.EventArgs e) => DecodeInput(((Button)sender).Text.Trim());
+        public void Short_Clicked(object sender, System.EventArgs e) => DecodeInput(".");
+        public void Long_Clicked(object sender, System.EventArgs e) => DecodeInput("-");
+        public void Space_Clicked(object sender, System.EventArgs e) => DecodeInput(" ");
 
         private string DecodedText = string.Empty;
         private string CodedTextStore = string.Empty;

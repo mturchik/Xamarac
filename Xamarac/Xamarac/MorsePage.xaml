@@ -3,30 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Xamarac;assembly=Xamarac"
              mc:Ignorable="d"
-             x:Class="Xamarac.MorsePage">
+             x:Class="Xamarac.MorsePage"
+             Padding="{x:Static local:AppConstants.PagePadding}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <LayoutOptions x:Key="horzOptions"
+                           Alignment="Center" 
+                           Expands="True" />
 
+            <LayoutOptions x:Key="vertOptions"
+                           Alignment="Center"
+                           Expands="True" />
+
+            <x:Double x:Key="borderWidth">3</x:Double>
+
+            <x:Double x:Key="buttonWidth">300</x:Double>
+            
+            <OnPlatform x:Key="textColor"
+                        x:TypeArguments="Color">
+                <On Platform="iOS" Value="Red" />
+                <On Platform="Android" Value="Blue" />
+                <On Platform="UWP" Value="#00A0A0" />
+            </OnPlatform>
+
+            <x:Double x:Key="fontSize">24</x:Double>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout>
-        
+
         <Label x:Name="message"
                Text=" "
-               FontSize="Large"
-               VerticalOptions="CenterAndExpand"
-               HorizontalOptions="Center" />
+               FontSize="{StaticResource fontSize}"
+               TextColor="{StaticResource textColor}"
+               HorizontalOptions="{StaticResource horzOptions}"
+               VerticalOptions="{StaticResource vertOptions}" />
 
-        <Button Text="   .   "
-                BorderWidth="100"
-                HorizontalOptions="CenterAndExpand"
-                Clicked="Button_Clicked" />
-        <Button Text="   -   "
-                BorderWidth="100"
-                HorizontalOptions="CenterAndExpand"
-                Clicked="Button_Clicked" />
-        <Button Text="       "
-                BorderWidth="100"
-                HorizontalOptions="CenterAndExpand"
-                Clicked="Button_Clicked" />
-        
+        <Button Text="SHORT"
+                WidthRequest="{StaticResource buttonWidth}"
+                FontSize="{StaticResource fontSize}"
+                TextColor="{StaticResource textColor}"
+                BorderWidth="{StaticResource borderWidth}"
+                HorizontalOptions="{StaticResource horzOptions}"
+                Clicked="Short_Clicked" />
+        <Button Text="LONG"
+                WidthRequest="{StaticResource buttonWidth}"
+                FontSize="{StaticResource fontSize}"
+                TextColor="{StaticResource textColor}"
+                BorderWidth="{StaticResource borderWidth}"
+                HorizontalOptions="{StaticResource horzOptions}"
+                Clicked="Long_Clicked" />
+        <Button Text="SPACE"
+                WidthRequest="{StaticResource buttonWidth}"
+                FontSize="{StaticResource fontSize}"
+                TextColor="{StaticResource textColor}"
+                BorderWidth="{StaticResource borderWidth}"
+                HorizontalOptions="{StaticResource horzOptions}"
+                Clicked="Space_Clicked" />
+
     </StackLayout>
 
 </ContentPage>

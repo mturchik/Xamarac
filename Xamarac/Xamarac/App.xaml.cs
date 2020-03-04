@@ -10,7 +10,7 @@ namespace Xamarac
         {
             InitializeComponent();
 
-            MainPage = new MorsePage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

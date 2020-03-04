@@ -1,4 +1,4 @@
-﻿namespace Xamarac
+﻿namespace Xamarac.Services
 {
     public class Morse
     {
