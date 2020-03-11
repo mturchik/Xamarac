@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Xamarac.ViewModels;assembly=Xamarac"
+             mc:Ignorable="d"
+             x:Class="Xamarac.Pages.PersonalityPage"
+             Title="Personality Quiz">
+    <StackLayout>
+        
+        <Label HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" x:Name="QuizResults"
+               TextColor="Black" FontSize="Title" FontAttributes="Bold"
+               IsVisible="False" Text="" />
+        <ListView x:Name="QuizList"
+                  ItemsSource="{x:Static viewModels:SpongebobQuizViewModel.QuizQuestions}"
+                  ItemTapped="QuizList_OnItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Question}"
+                              TextColor="Black"
+                              Detail="{Binding Answer}"
+                              DetailColor="{Binding AnswerColor}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Label HorizontalTextAlignment="Center" x:Name="QuestionLabel" />
+        <Label HorizontalTextAlignment="Center" x:Name="AnswerLabel" />
+        <Grid Padding="10" IsVisible="False" x:Name="InputGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Text="1"
+                    FontAttributes="Bold" Clicked="SNeg_Clicked" />
+            <Button Grid.Column="1"
+                    Text="2"
+                    FontAttributes="Bold" Clicked="Neg_Clicked" />
+            <Button Grid.Column="2"
+                    Text="3"
+                    FontAttributes="Bold" Clicked="Neu_Clicked" />
+            <Button Grid.Column="3"
+                    Text="4"
+                    FontAttributes="Bold" Clicked="Pos_Clicked" />
+            <Button Grid.Column="4"
+                    Text="5"
+                    FontAttributes="Bold" Clicked="SPos_Clicked" />
+        </Grid>
+        <Button Text="Submit Quiz" Clicked="Submit_Quiz" x:Name="SubmitButton" />
+        <Button Text="Reset Quiz" Clicked="Reset_Quiz" x:Name="ResetButton" IsVisible="False" />
+    </StackLayout>
+</ContentPage>

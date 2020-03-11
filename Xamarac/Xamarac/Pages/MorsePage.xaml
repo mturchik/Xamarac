@@ -4,9 +4,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Xamarac;assembly=Xamarac"
+             xmlns:services="clr-namespace:Xamarac.Services;assembly=Xamarac"
              mc:Ignorable="d"
-             x:Class="Xamarac.MorsePage"
-             Padding="{x:Static local:AppConstants.PagePadding}">
+             x:Class="Xamarac.Pages.MorsePage"
+             Padding="{x:Static services:AppConstants.PagePadding}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <LayoutOptions x:Key="horzOptions"

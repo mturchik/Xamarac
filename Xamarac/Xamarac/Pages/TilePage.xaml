@@ -4,10 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Xamarac"
+             xmlns:services="clr-namespace:Xamarac.Services;assembly=Xamarac"
              mc:Ignorable="d"
-             x:Class="Xamarac.TilePage"
-             Padding="{x:Static local:AppConstants.PagePadding}">
-    <Grid BackgroundColor="{x:Static local:AppConstants.BackgroundColor}">
+             x:Class="Xamarac.Pages.TilePage"
+             Padding="{x:Static services:AppConstants.PagePadding}">
+    <Grid BackgroundColor="{x:Static services:AppConstants.BackgroundColor}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -24,92 +25,92 @@
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="0" Grid.Column="0" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="0" Grid.Column="1" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="0" Grid.Column="2" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="1" Grid.Column="0" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="1" Grid.Column="1" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="1" Grid.Column="2" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="2" Grid.Column="0" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="2" Grid.Column="1" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="2" Grid.Column="2" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="3" Grid.Column="0" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="3" Grid.Column="1" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="3" Grid.Column="2" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="4" Grid.Column="0" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="4" Grid.Column="1" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="4" Grid.Column="2" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="5" Grid.Column="0" />
 
         <Button Text=" "
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="5" Grid.Column="1" />
 
         <Button Text=""
                 Clicked="Button_OnClicked"
-                BackgroundColor="{x:Static local:AppConstants.InactiveTile}"
+                BackgroundColor="{x:Static services:AppConstants.InactiveTile}"
                 Grid.Row="5" Grid.Column="2" />
     </Grid>
 </ContentPage>

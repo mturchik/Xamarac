@@ -16,22 +16,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="TilePage.xaml.cs">
+    <Compile Update="Pages\TilePage.xaml.cs">
       <DependentUpon>TilePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="MorsePage.xaml.cs">
+    <Compile Update="Pages\MorsePage.xaml.cs">
       <DependentUpon>MorsePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="ListPage.xaml">
+    <EmbeddedResource Update="Pages\ListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="TilePage.xaml">
+    <EmbeddedResource Update="Pages\PersonalityPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="MainPage.xaml">
+    <EmbeddedResource Update="Pages\TilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

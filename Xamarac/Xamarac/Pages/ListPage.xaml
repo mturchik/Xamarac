@@ -4,11 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Xamarac;assembly=Xamarac"
+             xmlns:viewModels="clr-namespace:Xamarac.ViewModels;assembly=Xamarac"
              mc:Ignorable="d"
-             x:Class="Xamarac.ListPage">
+             x:Class="Xamarac.Pages.ListPage">
     <StackLayout>
         <ListView x:Name="MyListView"
-                  ItemsSource="{x:Static local:ListViewModel.Comments}"
+                  ItemsSource="{x:Static viewModels:ListViewModel.Comments}"
                   ItemTapped="Handle_ItemTapped"
                   CachingStrategy="RecycleElement">
             <!--Built in Cells-->

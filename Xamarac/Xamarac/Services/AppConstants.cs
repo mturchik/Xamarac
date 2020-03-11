@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace Xamarac
+namespace Xamarac.Services
 {
     public static class AppConstants
     {

@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel;
-using System.Threading.Tasks;
 using Xamarac.Services;
 using Xamarin.Forms;
 
-namespace Xamarac
+namespace Xamarac.Pages
 {
     [DesignTimeVisible(false)]
     public partial class MorsePage : ContentPage

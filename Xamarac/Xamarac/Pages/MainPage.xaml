@@ -4,9 +4,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Xamarac;assembly=Xamarac"
+             xmlns:viewModels="clr-namespace:Xamarac.ViewModels;assembly=Xamarac"
              mc:Ignorable="d"
-             x:Class="Xamarac.MainPage">
-    <ListView ItemsSource="{x:Static local:PageDataViewModel.All}"
+             x:Class="Xamarac.Pages.MainPage">
+    <ListView ItemsSource="{x:Static viewModels:PageDataViewModel.All}"
               ItemSelected="OnListViewItemSelected">
         <ListView.ItemTemplate>
             <DataTemplate>
