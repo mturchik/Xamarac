@@ -33,20 +33,14 @@ namespace Xamarac.ViewModels
         static SpongebobQuizViewModel() =>
             QuizQuestions = new ObservableCollection<SpongebobQuizViewModel>
             {
-                new SpongebobQuizViewModel("Crabby Patties are delicious",
-                                           SpongebobCharacter.Squidward, SpongebobCharacter.MrCrabs),
                 new SpongebobQuizViewModel("I love catching jellyfish",
                                            SpongebobCharacter.Spongebob, SpongebobCharacter.Squidward),
                 new SpongebobQuizViewModel("I don't need water",
                                            SpongebobCharacter.Spongebob, SpongebobCharacter.Patrick),
                 new SpongebobQuizViewModel("People are only good when they're giving me money",
                                            SpongebobCharacter.MrCrabs, SpongebobCharacter.Spongebob),
-                new SpongebobQuizViewModel("Every moment is the worst part of my day",
-                                           SpongebobCharacter.Squidward, SpongebobCharacter.Patrick),
                 new SpongebobQuizViewModel("Spongebob is my best friend",
                                            SpongebobCharacter.Patrick, SpongebobCharacter.MrCrabs),
-                new SpongebobQuizViewModel("Money is my best friend",
-                                           SpongebobCharacter.MrCrabs, SpongebobCharacter.Spongebob),
                 new SpongebobQuizViewModel("Friends are overrated, I'm my own best friend",
                                            SpongebobCharacter.Squidward, SpongebobCharacter.Spongebob),
                 new SpongebobQuizViewModel("I'm the real dirty dan",

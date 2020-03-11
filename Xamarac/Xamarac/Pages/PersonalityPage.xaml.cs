@@ -19,10 +19,12 @@ namespace Xamarac.Pages
         {
             var grade = SpongebobQuizViewModel.GradeQuiz();
 
-            QuizResults.Text = $"You are exactly like: {grade}. Congratulations.";
+            QuizResults.Text = $"{NameEntry.Text} is exactly like: {grade}. Congratulations, very impressive for a {AgeEntry.Text} year old.";
             QuizResults.IsVisible = true;
             ResetButton.IsVisible = true;
 
+            NameEntry.IsVisible = false;
+            AgeEntry.IsVisible = false;
             QuizList.IsVisible = false;
             QuestionLabel.IsVisible = false;
             AnswerLabel.IsVisible = false;
@@ -44,7 +46,9 @@ namespace Xamarac.Pages
             QuizResults.Text = string.Empty;
             QuizResults.IsVisible = false;
             ResetButton.IsVisible = false;
-
+            
+            NameEntry.IsVisible = true;
+            AgeEntry.IsVisible = true;
             QuizList.IsVisible = true;
             SubmitButton.IsVisible = true;
         }

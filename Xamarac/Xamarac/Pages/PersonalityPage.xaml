@@ -13,6 +13,8 @@
         <Label HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" x:Name="QuizResults"
                TextColor="Black" FontSize="Title" FontAttributes="Bold"
                IsVisible="False" Text="" />
+        <Entry Placeholder="Name" Keyboard="Chat" x:Name="NameEntry"/>
+        <Entry Placeholder="Age" Keyboard="Numeric" x:Name="AgeEntry"></Entry>
         <ListView x:Name="QuizList"
                   ItemsSource="{x:Static viewModels:SpongebobQuizViewModel.QuizQuestions}"
                   ItemTapped="QuizList_OnItemTapped">
