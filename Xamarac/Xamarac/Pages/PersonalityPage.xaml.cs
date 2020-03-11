@@ -17,9 +17,16 @@ namespace Xamarac.Pages
 
         private void Submit_Quiz(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(NameEntry.Text)) return;
+            SpongebobQuizViewModel.Name = NameEntry.Text;
+
+            if (int.TryParse(AgeEntry.Text, out var age))
+                SpongebobQuizViewModel.Age = age;
+            else return;
             var grade = SpongebobQuizViewModel.GradeQuiz();
 
-            QuizResults.Text = $"{NameEntry.Text} is exactly like: {grade}. Congratulations, very impressive for a {AgeEntry.Text} year old.";
+            QuizResults.Text =
+                $"{NameEntry.Text} is exactly like: {grade}. Congratulations, very impressive for a {AgeEntry.Text} year old.";
             QuizResults.IsVisible = true;
             ResetButton.IsVisible = true;
 
@@ -38,7 +45,7 @@ namespace Xamarac.Pages
             foreach (var question in toReset)
             {
                 question.Answer = SurveyResponse.Neutral;
-                
+
                 var indexOfQuestion = SpongebobQuizViewModel.QuizQuestions.IndexOf(question);
                 SpongebobQuizViewModel.QuizQuestions[indexOfQuestion] = question;
             }
@@ -46,7 +53,7 @@ namespace Xamarac.Pages
             QuizResults.Text = string.Empty;
             QuizResults.IsVisible = false;
             ResetButton.IsVisible = false;
-            
+
             NameEntry.IsVisible = true;
             AgeEntry.IsVisible = true;
             QuizList.IsVisible = true;

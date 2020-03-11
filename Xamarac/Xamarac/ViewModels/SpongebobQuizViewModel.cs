@@ -49,6 +49,9 @@ namespace Xamarac.ViewModels
 
         public static ObservableCollection<SpongebobQuizViewModel> QuizQuestions { get; set; }
 
+        public static string Name { get; set; }
+        public static int Age { get; set; }
+
         public static SpongebobCharacter GradeQuiz()
         {
             var list = new List<int> { 0, 0, 0, 0 };
@@ -76,6 +79,24 @@ namespace Xamarac.ViewModels
                     default: throw new ArgumentOutOfRangeException();
                 }
             }
+
+            if (Name.Length < 3)
+                list[0] += 4;
+            else if (Name.Length < 6)
+                list[1] += 4;
+            else if (Name.Length < 9)
+                list[2] += 4;
+            else
+                list[3] += 4;
+
+            if (Age < 20)
+                list[0] += 4;
+            else if (Age < 30)
+                list[1] += 4;
+            else if (Age < 40)
+                list[2] += 4;
+            else
+                list[3] += 4;
 
             switch (list.IndexOf(list.Max()))
             {
