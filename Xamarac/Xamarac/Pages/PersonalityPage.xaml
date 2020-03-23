@@ -5,19 +5,35 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:Xamarac.ViewModels;assembly=Xamarac"
+             xmlns:local="clr-namespace:Xamarac.Services;assembly=Xamarac"
              mc:Ignorable="d"
              x:Class="Xamarac.Pages.PersonalityPage"
              Title="Personality Quiz">
     <StackLayout>
-        
-        <Label HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" x:Name="QuizResults"
-               TextColor="Black" FontSize="Title" FontAttributes="Bold"
-               IsVisible="False" Text="" />
-        <Entry Placeholder="Name" Keyboard="Chat" x:Name="NameEntry"/>
-        <Entry Placeholder="Age" Keyboard="Numeric" x:Name="AgeEntry"></Entry>
+
+        <Label x:Name="QuizResults"
+               HorizontalTextAlignment="Center"
+               VerticalOptions="CenterAndExpand"
+               TextColor="Black"
+               FontSize="Title"
+               FontAttributes="Bold"
+               IsVisible="False"
+               Text="" />
+
+        <Image x:Name="Image"
+               IsVisible="False"
+               Source=""
+               HeightRequest="300"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="Center" />
+
+        <Entry Placeholder="Name" Keyboard="Chat" x:Name="NameEntry" />
+        <Entry Placeholder="Age" Keyboard="Numeric" x:Name="AgeEntry" />
+
         <ListView x:Name="QuizList"
+                  SeparatorVisibility="None"
                   ItemsSource="{x:Static viewModels:SpongebobQuizViewModel.QuizQuestions}"
-                  ItemTapped="QuizList_OnItemTapped">
+                  ItemSelected="QuizList_OnItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Question}"
@@ -28,35 +44,16 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Label HorizontalTextAlignment="Center" x:Name="QuestionLabel" />
-        <Label HorizontalTextAlignment="Center" x:Name="AnswerLabel" />
-        <Grid Padding="10" IsVisible="False" x:Name="InputGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0"
-                    Text="1"
-                    FontAttributes="Bold" Clicked="SNeg_Clicked" />
-            <Button Grid.Column="1"
-                    Text="2"
-                    FontAttributes="Bold" Clicked="Neg_Clicked" />
-            <Button Grid.Column="2"
-                    Text="3"
-                    FontAttributes="Bold" Clicked="Neu_Clicked" />
-            <Button Grid.Column="3"
-                    Text="4"
-                    FontAttributes="Bold" Clicked="Pos_Clicked" />
-            <Button Grid.Column="4"
-                    Text="5"
-                    FontAttributes="Bold" Clicked="SPos_Clicked" />
-        </Grid>
+        <local:SwipeContainer Swipe="ItemSwiped">
+            <Label x:Name="AnswerLabel"
+                   Text="SWIPE HERE AFTER SELECTING"
+                   BackgroundColor="CadetBlue"
+                   VerticalOptions="CenterAndExpand"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   TextColor="Black"
+                   FontSize="Large" />
+        </local:SwipeContainer>
         <Button Text="Submit Quiz" Clicked="Submit_Quiz" x:Name="SubmitButton" />
         <Button Text="Reset Quiz" Clicked="Reset_Quiz" x:Name="ResetButton" IsVisible="False" />
     </StackLayout>

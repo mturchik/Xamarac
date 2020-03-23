@@ -25,17 +25,17 @@ namespace Xamarac.Pages
             else return;
             var grade = SpongebobQuizViewModel.GradeQuiz();
 
-            QuizResults.Text =
-                $"{NameEntry.Text} is exactly like: {grade}. Congratulations, very impressive for a {AgeEntry.Text} year old.";
+            QuizResults.Text = $"{NameEntry.Text} is exactly like: {grade}. " +
+                               $"Congratulations, very impressive for a {AgeEntry.Text} year old.";
             QuizResults.IsVisible = true;
             ResetButton.IsVisible = true;
+            Image.Source = grade.GetImageUrl();
+            Image.IsVisible = true;
 
             NameEntry.IsVisible = false;
             AgeEntry.IsVisible = false;
             QuizList.IsVisible = false;
-            QuestionLabel.IsVisible = false;
             AnswerLabel.IsVisible = false;
-            InputGrid.IsVisible = false;
             SubmitButton.IsVisible = false;
         }
 
@@ -50,97 +50,35 @@ namespace Xamarac.Pages
                 SpongebobQuizViewModel.QuizQuestions[indexOfQuestion] = question;
             }
 
-            QuizResults.Text = string.Empty;
             QuizResults.IsVisible = false;
             ResetButton.IsVisible = false;
+            Image.IsVisible = false;
 
             NameEntry.IsVisible = true;
             AgeEntry.IsVisible = true;
             QuizList.IsVisible = true;
+            AnswerLabel.IsVisible = true;
             SubmitButton.IsVisible = true;
         }
-
-        private void QuizList_OnItemTapped(object sender, ItemTappedEventArgs e)
+        
+        private void ItemSwiped(object sender, SwipedEventArgs e)
         {
-            var activeQuestion = (SpongebobQuizViewModel) e.Item;
+            if (QuizList.SelectedItem is null) return;
+            
+            var activeQuestion = (SpongebobQuizViewModel) QuizList.SelectedItem;
 
-            if (activeQuestion is null) return;
-            QuestionLabel.Text = activeQuestion.Question;
+            if (e.Direction is SwipeDirection.Left)
+                activeQuestion.Answer = activeQuestion.Answer.DecreaseResponse();
+            else if (e.Direction is SwipeDirection.Right)
+                activeQuestion.Answer = activeQuestion.Answer.IncreaseResponse();
+
+            
+            var indexOfActive = SpongebobQuizViewModel.QuizQuestions.IndexOf(activeQuestion);
+            SpongebobQuizViewModel.QuizQuestions[indexOfActive] = activeQuestion;
             AnswerLabel.Text = activeQuestion.Answer.ToString();
-
-            QuestionLabel.IsVisible = true;
-            AnswerLabel.IsVisible = true;
-            InputGrid.IsVisible = true;
         }
 
-        private void SNeg_Clicked(object sender, EventArgs e)
-        {
-            var activeQuestion = (SpongebobQuizViewModel) QuizList.SelectedItem;
-
-            if (activeQuestion is null) return;
-            activeQuestion.Answer = SurveyResponse.StrongNegative;
-            QuestionLabel.IsVisible = false;
-            AnswerLabel.IsVisible = false;
-
-            var indexOfActive = SpongebobQuizViewModel.QuizQuestions.IndexOf(activeQuestion);
-            SpongebobQuizViewModel.QuizQuestions[indexOfActive] = activeQuestion;
-            InputGrid.IsVisible = false;
-        }
-
-        private void Neg_Clicked(object sender, EventArgs e)
-        {
-            var activeQuestion = (SpongebobQuizViewModel) QuizList.SelectedItem;
-
-            if (activeQuestion is null) return;
-            activeQuestion.Answer = SurveyResponse.Negative;
-            QuestionLabel.IsVisible = false;
-            AnswerLabel.IsVisible = false;
-
-            var indexOfActive = SpongebobQuizViewModel.QuizQuestions.IndexOf(activeQuestion);
-            SpongebobQuizViewModel.QuizQuestions[indexOfActive] = activeQuestion;
-            InputGrid.IsVisible = false;
-        }
-
-        private void Neu_Clicked(object sender, EventArgs e)
-        {
-            var activeQuestion = (SpongebobQuizViewModel) QuizList.SelectedItem;
-
-            if (activeQuestion is null) return;
-            activeQuestion.Answer = SurveyResponse.Neutral;
-            QuestionLabel.IsVisible = false;
-            AnswerLabel.IsVisible = false;
-
-            var indexOfActive = SpongebobQuizViewModel.QuizQuestions.IndexOf(activeQuestion);
-            SpongebobQuizViewModel.QuizQuestions[indexOfActive] = activeQuestion;
-            InputGrid.IsVisible = false;
-        }
-
-        private void Pos_Clicked(object sender, EventArgs e)
-        {
-            var activeQuestion = (SpongebobQuizViewModel) QuizList.SelectedItem;
-
-            if (activeQuestion is null) return;
-            activeQuestion.Answer = SurveyResponse.Positive;
-            QuestionLabel.IsVisible = false;
-            AnswerLabel.IsVisible = false;
-
-            var indexOfActive = SpongebobQuizViewModel.QuizQuestions.IndexOf(activeQuestion);
-            SpongebobQuizViewModel.QuizQuestions[indexOfActive] = activeQuestion;
-            InputGrid.IsVisible = false;
-        }
-
-        private void SPos_Clicked(object sender, EventArgs e)
-        {
-            var activeQuestion = (SpongebobQuizViewModel) QuizList.SelectedItem;
-
-            if (activeQuestion is null) return;
-            activeQuestion.Answer = SurveyResponse.StrongPositive;
-            QuestionLabel.IsVisible = false;
-            AnswerLabel.IsVisible = false;
-
-            var indexOfActive = SpongebobQuizViewModel.QuizQuestions.IndexOf(activeQuestion);
-            SpongebobQuizViewModel.QuizQuestions[indexOfActive] = activeQuestion;
-            InputGrid.IsVisible = false;
-        }
+        private void QuizList_OnItemSelected(object sender, SelectedItemChangedEventArgs e) =>
+            AnswerLabel.Text = ((SpongebobQuizViewModel) QuizList.SelectedItem).Answer.ToString();
     }
 }

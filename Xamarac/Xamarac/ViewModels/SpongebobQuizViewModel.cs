@@ -10,14 +10,16 @@ namespace Xamarac.ViewModels
 {
     public class SpongebobQuizViewModel
     {
-        public SpongebobQuizViewModel(string question, SpongebobCharacter pChar, SpongebobCharacter nChar)
+        public SpongebobQuizViewModel(int id, string question, SpongebobCharacter pChar, SpongebobCharacter nChar)
         {
+            Id = $"Q{id}";
             Question = question;
             PositiveCharacter = pChar;
             NegativeCharacter = nChar;
             Answer = SurveyResponse.Neutral;
         }
 
+        public string Id { get; }
         public string Question { get; }
         public SpongebobCharacter PositiveCharacter { get; set; }
         public SpongebobCharacter NegativeCharacter { get; set; }
@@ -33,17 +35,17 @@ namespace Xamarac.ViewModels
         static SpongebobQuizViewModel() =>
             QuizQuestions = new ObservableCollection<SpongebobQuizViewModel>
             {
-                new SpongebobQuizViewModel("I love catching jellyfish",
+                new SpongebobQuizViewModel(1, "I love catching jellyfish",
                                            SpongebobCharacter.Spongebob, SpongebobCharacter.Squidward),
-                new SpongebobQuizViewModel("I don't need water",
+                new SpongebobQuizViewModel(2, "I don't need water",
                                            SpongebobCharacter.Spongebob, SpongebobCharacter.Patrick),
-                new SpongebobQuizViewModel("People are only good when they're giving me money",
+                new SpongebobQuizViewModel(3, "People are only good when they're giving me money",
                                            SpongebobCharacter.MrCrabs, SpongebobCharacter.Spongebob),
-                new SpongebobQuizViewModel("Spongebob is my best friend",
+                new SpongebobQuizViewModel(4, "Spongebob is my best friend",
                                            SpongebobCharacter.Patrick, SpongebobCharacter.MrCrabs),
-                new SpongebobQuizViewModel("Friends are overrated, I'm my own best friend",
+                new SpongebobQuizViewModel(5, "Friends are overrated, I'm my own best friend",
                                            SpongebobCharacter.Squidward, SpongebobCharacter.Spongebob),
-                new SpongebobQuizViewModel("I'm the real dirty dan",
+                new SpongebobQuizViewModel(6, "I'm the real dirty dan",
                                            SpongebobCharacter.Patrick, SpongebobCharacter.Squidward)
             };
 
