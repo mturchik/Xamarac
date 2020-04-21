@@ -5,55 +5,50 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:Xamarac.ViewModels;assembly=Xamarac"
-             xmlns:local="clr-namespace:Xamarac.Services;assembly=Xamarac"
              mc:Ignorable="d"
              x:Class="Xamarac.Pages.PersonalityPage"
              Title="Personality Quiz">
     <StackLayout>
 
-        <Label x:Name="QuizResults"
-               HorizontalTextAlignment="Center"
+        <Label HorizontalTextAlignment="Center"
                VerticalOptions="CenterAndExpand"
+               x:Name="QuizResults"
                TextColor="Black"
                FontSize="Title"
                FontAttributes="Bold"
                IsVisible="False"
                Text="" />
-
         <Image x:Name="Image"
                IsVisible="False"
                Source=""
                HeightRequest="300"
                VerticalOptions="CenterAndExpand"
                HorizontalOptions="Center" />
-
+        
         <Entry Placeholder="Name" Keyboard="Chat" x:Name="NameEntry" />
         <Entry Placeholder="Age" Keyboard="Numeric" x:Name="AgeEntry" />
-
         <ListView x:Name="QuizList"
                   SeparatorVisibility="None"
                   ItemsSource="{x:Static viewModels:SpongebobQuizViewModel.QuizQuestions}"
-                  ItemSelected="QuizList_OnItemSelected">
+                  SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Question}"
-                              TextColor="Black"
-                              Detail="{Binding Answer}"
-                              DetailColor="{Binding AnswerColor}" />
+                    <ViewCell>
+                        <StackLayout HorizontalOptions="StartAndExpand"
+                                     Orientation="Horizontal">
+                            <Switch IsToggled="{Binding Answer}"
+                                    ThumbColor="LightSlateGray"
+                                    OnColor="MediumSeaGreen" />
+                            <Label Text="{Binding Question}"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="Medium" />
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <local:SwipeContainer Swipe="ItemSwiped">
-            <Label x:Name="AnswerLabel"
-                   Text="SWIPE HERE AFTER SELECTING"
-                   BackgroundColor="CadetBlue"
-                   VerticalOptions="CenterAndExpand"
-                   VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"
-                   TextColor="Black"
-                   FontSize="Large" />
-        </local:SwipeContainer>
+        <Label HorizontalTextAlignment="Center" x:Name="QuizError" TextColor="Red" />
         <Button Text="Submit Quiz" Clicked="Submit_Quiz" x:Name="SubmitButton" />
         <Button Text="Reset Quiz" Clicked="Reset_Quiz" x:Name="ResetButton" IsVisible="False" />
     </StackLayout>

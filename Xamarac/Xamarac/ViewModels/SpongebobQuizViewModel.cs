@@ -10,43 +10,45 @@ namespace Xamarac.ViewModels
 {
     public class SpongebobQuizViewModel
     {
-        public SpongebobQuizViewModel(int id, string question, SpongebobCharacter pChar, SpongebobCharacter nChar)
+        public SpongebobQuizViewModel(string question, SpongebobCharacter pChar, SpongebobCharacter nChar)
         {
-            Id = $"Q{id}";
             Question = question;
             PositiveCharacter = pChar;
             NegativeCharacter = nChar;
-            Answer = SurveyResponse.Neutral;
         }
 
-        public string Id { get; }
         public string Question { get; }
         public SpongebobCharacter PositiveCharacter { get; set; }
         public SpongebobCharacter NegativeCharacter { get; set; }
-        public SurveyResponse Answer { get; set; }
-
-        public Color AnswerColor =>
-            Answer is SurveyResponse.StrongNegative ? Color.DarkRed :
-            Answer is SurveyResponse.Negative       ? Color.Red :
-            Answer is SurveyResponse.Neutral        ? Color.Black :
-            Answer is SurveyResponse.Positive       ? Color.DarkSeaGreen :
-            Answer is SurveyResponse.StrongPositive ? Color.LawnGreen : Color.Black;
+        public bool Answer { get; set; }
 
         static SpongebobQuizViewModel() =>
             QuizQuestions = new ObservableCollection<SpongebobQuizViewModel>
             {
-                new SpongebobQuizViewModel(1, "I love catching jellyfish",
-                                           SpongebobCharacter.Spongebob, SpongebobCharacter.Squidward),
-                new SpongebobQuizViewModel(2, "I don't need water",
-                                           SpongebobCharacter.Spongebob, SpongebobCharacter.Patrick),
-                new SpongebobQuizViewModel(3, "People are only good when they're giving me money",
-                                           SpongebobCharacter.MrCrabs, SpongebobCharacter.Spongebob),
-                new SpongebobQuizViewModel(4, "Spongebob is my best friend",
-                                           SpongebobCharacter.Patrick, SpongebobCharacter.MrCrabs),
-                new SpongebobQuizViewModel(5, "Friends are overrated, I'm my own best friend",
-                                           SpongebobCharacter.Squidward, SpongebobCharacter.Spongebob),
-                new SpongebobQuizViewModel(6, "I'm the real dirty dan",
-                                           SpongebobCharacter.Patrick, SpongebobCharacter.Squidward)
+                new SpongebobQuizViewModel("I love catching jellyfish",
+                    SpongebobCharacter.Spongebob, SpongebobCharacter.Squidward),
+                new SpongebobQuizViewModel("I don't need water",
+                    SpongebobCharacter.Spongebob, SpongebobCharacter.Patrick),
+                new SpongebobQuizViewModel("People are only good when they're giving me money",
+                    SpongebobCharacter.MrCrabs, SpongebobCharacter.Spongebob),
+                new SpongebobQuizViewModel("Sponge is my best friend",
+                    SpongebobCharacter.Patrick, SpongebobCharacter.MrCrabs),
+                new SpongebobQuizViewModel("Friends are overrated, I'm my own best friend",
+                    SpongebobCharacter.Squidward, SpongebobCharacter.Spongebob),
+                new SpongebobQuizViewModel("I'm the real dirty dan",
+                    SpongebobCharacter.Patrick, SpongebobCharacter.Squidward),
+                new SpongebobQuizViewModel("Is this the Krusty Krab?",
+                    SpongebobCharacter.Patrick, SpongebobCharacter.Squidward),
+                new SpongebobQuizViewModel("CHOCOLATE!?!?!?",
+                    SpongebobCharacter.MrCrabs, SpongebobCharacter.Spongebob),
+                new SpongebobQuizViewModel("What is the secret formula?",
+                    SpongebobCharacter.MrCrabs, SpongebobCharacter.Spongebob),
+                new SpongebobQuizViewModel("Do you enjoy free balloon day?",
+                    SpongebobCharacter.Spongebob, SpongebobCharacter.Squidward),
+                new SpongebobQuizViewModel("Do you play the clarinet?",
+                    SpongebobCharacter.Squidward, SpongebobCharacter.Patrick),
+                new SpongebobQuizViewModel("Is mayonaise an instrument?",
+                    SpongebobCharacter.Patrick, SpongebobCharacter.Squidward)
             };
 
         public static ObservableCollection<SpongebobQuizViewModel> QuizQuestions { get; set; }
@@ -56,30 +58,13 @@ namespace Xamarac.ViewModels
 
         public static SpongebobCharacter GradeQuiz()
         {
-            var list = new List<int> { 0, 0, 0, 0 };
+            var list = new List<int> {0, 0, 0, 0};
             foreach (var question in QuizQuestions)
             {
-                switch (question.Answer)
-                {
-                    case SurveyResponse.Neutral: continue;
-                    case SurveyResponse.StrongNegative:
-                        list[(int) question.NegativeCharacter] += 2;
-                        list[(int) question.PositiveCharacter] -= 2;
-                        break;
-                    case SurveyResponse.Negative:
-                        list[(int) question.NegativeCharacter] += 1;
-                        list[(int) question.PositiveCharacter] -= 1;
-                        break;
-                    case SurveyResponse.Positive:
-                        list[(int) question.NegativeCharacter] -= 1;
-                        list[(int) question.PositiveCharacter] += 1;
-                        break;
-                    case SurveyResponse.StrongPositive:
-                        list[(int) question.NegativeCharacter] -= 2;
-                        list[(int) question.PositiveCharacter] += 2;
-                        break;
-                    default: throw new ArgumentOutOfRangeException();
-                }
+                if (question.Answer)
+                    list[(int) question.PositiveCharacter] += 1;
+                else
+                    list[(int) question.NegativeCharacter] += 1;
             }
 
             if (Name.Length < 3)
@@ -102,10 +87,10 @@ namespace Xamarac.ViewModels
 
             switch (list.IndexOf(list.Max()))
             {
-                case 0:  return SpongebobCharacter.Spongebob;
-                case 1:  return SpongebobCharacter.Patrick;
-                case 2:  return SpongebobCharacter.Squidward;
-                case 3:  return SpongebobCharacter.MrCrabs;
+                case 0: return SpongebobCharacter.Spongebob;
+                case 1: return SpongebobCharacter.Patrick;
+                case 2: return SpongebobCharacter.Squidward;
+                case 3: return SpongebobCharacter.MrCrabs;
                 default: return SpongebobCharacter.Spongebob;
             }
         }
