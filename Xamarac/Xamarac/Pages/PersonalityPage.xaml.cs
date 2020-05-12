@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using RestSharp;
 using Xamarac.Services;
 using Xamarac.ViewModels;
 using Xamarin.Forms;
@@ -14,6 +16,8 @@ namespace Xamarac.Pages
     public partial class PersonalityPage : ContentPage
     {
         public PersonalityPage() => InitializeComponent();
+
+        private IRestClient _client = new RestClient("https://api.chucknorris.io/jokes/random");
 
         private void Submit_Quiz(object sender, EventArgs e)
         {
@@ -36,8 +40,11 @@ namespace Xamarac.Pages
 
             var grade = SpongebobQuizViewModel.GradeQuiz();
 
-            QuizResults.Text = $"{NameEntry.Text} is exactly like: {grade}. " +
-                               $"Congratulations, very impressive for a {AgeEntry.Text} year old.";
+            var response = _client.Execute(new RestRequest(Method.GET));
+            var quote = response != null && response.IsSuccessful
+                ? JsonConvert.DeserializeObject<ChuckQuote>(response.Content).Saying : "Never stop always winnin'";
+            QuizResults.Text = $"{NameEntry.Text} ({AgeEntry.Text}) is exactly like: {grade}. " +
+                               $"Chuck Says: {quote}";
             QuizResults.IsVisible = true;
             ResetButton.IsVisible = true;
             Image.Source = grade.GetImageUrl();
